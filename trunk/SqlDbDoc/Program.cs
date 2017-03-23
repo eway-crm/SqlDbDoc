@@ -175,8 +175,10 @@ namespace Altairis.SqlDbDoc {
                 }
 
                 Trace.Indent();
+
                 // Process columns
                 RenderColumns(objectId, e);
+                RenderParameters(objectId, e);
 
                 // Process child objects
                 RenderChildObjects(objectId, e);
@@ -216,5 +218,30 @@ namespace Altairis.SqlDbDoc {
             }
         }
 
+        static void RenderParameters(int objectId, XmlElement parentElement)
+        {
+            var dt = new DataTable();
+            using (var da = new SqlDataAdapter(Resources.Commands.GetParameters, connectionString))
+            {
+                da.SelectCommand.Parameters.Add("@object_id", SqlDbType.Int).Value = objectId;
+                da.Fill(dt);
+            }
+
+            // Process all parameters
+            foreach (DataRow row in dt.Rows)
+            {
+                Trace.WriteLine(string.Format("{0} {1}", row["name"], row["type"]));
+
+                // Create object element
+                var e = parentElement.AppendChild(parentElement.OwnerDocument.CreateElement("parameter")) as XmlElement;
+                foreach (DataColumn col in dt.Columns)
+                {
+                    var value = row.ToXmlString(col);
+                    if (string.IsNullOrWhiteSpace(value)) continue;
+
+                    e.SetAttribute(col.ColumnName, value);
+                }
+            }
+        }
     }
 }

@@ -127,6 +127,9 @@
   <data name="GetObjects" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>commands\getobjects.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="GetParameters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Commands\GetParameters.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
   <data name="GetSchemas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>commands\getschemas.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
