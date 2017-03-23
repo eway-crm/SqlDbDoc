@@ -18,8 +18,7 @@ namespace Altairis.SqlDbDoc {
         static void Main(string[] args) {
             Console.WriteLine("Altairis DB>doc version {0:4}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine("Copyright (c) Altairis, 2011 | www.altairis.cz | SqlDbDoc.codeplex.com");
-			Console.WriteLine("Modifications by HAVIT, 2015 | www.havit.eu | https://github.com/hakenr/SqlDbDoc");
-			Console.WriteLine();
+            Console.WriteLine();
 
             // Add console trace listener
             Trace.Listeners.Add(new ConsoleTraceListener());
@@ -35,8 +34,7 @@ namespace Altairis.SqlDbDoc {
             [Required(Description = "output file name")] string fileName,
             [Optional(false, "y", Description = "overwrite output file")] bool overwrite,
             [Optional(null, "f", Description = "output format: html, wikiplex, xml (autodetected when omitted)")] string format,
-            [Optional(false, Description = "debug mode (show detailed error messages)")] bool debug,
-			[Optional(null, "t", Description = "xslt template (file name)")] string template
+            [Optional(false, Description = "debug mode (show detailed error messages)")] bool debug
             ) {
 
             // Validate arguments
@@ -97,11 +95,7 @@ namespace Altairis.SqlDbDoc {
 
                 // Read XSL template code
                 string xslt;
-	            if (!String.IsNullOrWhiteSpace(template))
-	            {
-		            xslt = File.ReadAllText(template);
-	            }
-	            else if (format.Equals("html")) {
+                if (format.Equals("html")) {
                     xslt = Resources.Templates.Html;
                 }
                 else {
