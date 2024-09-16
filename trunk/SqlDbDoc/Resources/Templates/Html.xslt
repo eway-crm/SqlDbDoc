@@ -316,6 +316,7 @@
               <tr>
                 <th>
                   <xsl:value-of select="@name"/>
+                  <xsl:if test="@is_output='true'"> OUTPUT</xsl:if>
                 </th>
                 <td class="type">
                   <xsl:value-of select="@type"/>
